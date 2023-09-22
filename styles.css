@@ -1,0 +1,51 @@
+/* Styles necessary for function */
+html, body {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+main {
+    display: flex;
+    height: 100%;
+}
+
+section {
+    flex: 1 1 50%;
+    border: 1px solid #FFF;
+    color: white;
+    background-color: #0d1117;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.divider {
+    width: 40px;
+    cursor: ew-resize;
+    color: white;
+    text-align: center;
+    background-color: #0d1117;
+}
+
+#drop-zone-media, #drop-zone-subtitle {
+    border: 2px dashed #FFF;
+    padding: 50px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+    max-height: 100%;
+}
+
+.subtitle {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #FFF;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.subtitle:hover {
+    background-color: #404040;
+}
