@@ -174,6 +174,18 @@ function handleSubtitleFile(event) {
         });
 
         mediaElement.load();
+
+        document.addEventListener('keydown', function(event) {
+            if (event.code === 'Space') {
+                if (mediaElement.paused) {
+                    mediaElement.play();
+                } else {
+                    mediaElement.pause();
+                }
+                event.preventDefault();
+            }
+        });
+        
     };
 
     reader.readAsText(file);
