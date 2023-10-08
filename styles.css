@@ -1,5 +1,6 @@
 /* Styles necessary for function */
 html, body {
+    font-family: 'Open Sans', sans-serif;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
