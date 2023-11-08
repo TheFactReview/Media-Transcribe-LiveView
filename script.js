@@ -119,7 +119,8 @@ function handleSubtitleFile(event) {
         } else {
             // Hugging Face Whisper Jax format
             subtitles = content.split('\n').map(sub => {
-                const match = sub.match(/\[(\d{2}:\d{2}\.\d{3}) -> (\d{2}:\d{2}\.\d{3})\] (.+)/);
+                // Updated to match the format with an optional hour part
+                const match = sub.match(/\[(\d{2}:)?(\d{2}:\d{2}\.\d{3}) -> (\d{2}:)?(\d{2}:\d{2}\.\d{3})\] (.+)/);
                 if (!match) return null;
                 
                 const formatTime = time => {
@@ -128,9 +129,13 @@ function handleSubtitleFile(event) {
                     return time.includes(':') && time.indexOf(':') === time.lastIndexOf(':') ? '00:' + time : time;
                 };
                 
-                const [, start, end, ...lines] = match.map((val, index) => index > 0 && index < 3 ? formatTime(val) : val);
-
-                console.log(start,end,lines.join('\n'))
+                // Destructuring the match array while considering the optional hour part
+                const [, startHour, startMinSec, endHour, endMinSec, ...lines] = match;
+                
+                const start = formatTime(startHour ? `${startHour}${startMinSec}` : startMinSec);
+                const end = formatTime(endHour ? `${endHour}${endMinSec}` : endMinSec);
+            
+                console.log(start, end, lines.join('\n'));
                 return {
                     start: parseTime(start),
                     end: parseTime(end),
